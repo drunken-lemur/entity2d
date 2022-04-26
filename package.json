@@ -15,6 +15,7 @@
     "preset": "ts-jest"
   },
   "dependencies": {
+    "brush2d": "git+ssh://git@github.com/drunken-lemur/brush2d.git#v0.0.1",
     "geometry2d": "git+ssh://git@github.com/drunken-lemur/geometry2d.git#v0.0.3",
     "typescript": "^4.2.4"
   },
