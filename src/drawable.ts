@@ -1,10 +1,10 @@
-import { Ctx2D } from './brush';
+import { IBrush } from './brush';
 import { IDrawers } from './drawer';
 import { IVisible } from './visiable';
 import { IUpdatableEntity } from './updatable';
 
 export interface IDrawable {
-  draw(brush: Ctx2D, deltaTime: number): void;
+  draw(brush: IBrush, deltaTime: number): void;
 }
 
 export interface IWithVDrawers<T extends IDrawableEntity = IDrawableEntity> {

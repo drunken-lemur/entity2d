@@ -1,11 +1,11 @@
-import { Ctx2D, Entity } from '../src';
+import { IBrush, Entity } from '../src';
 
 const noop = () => void 0;
 
 const ctxDumb = {
   save: noop,
   restore: noop,
-} as Ctx2D;
+} as IBrush;
 
 describe('Entity', () => {
   it('hide', () => {
