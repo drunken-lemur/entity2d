@@ -9,8 +9,8 @@ export const childrenDrawer: IDrawer = (entity, ctx, deltaTime) => {
   });
 };
 
-export const defaultDrawer: IDrawer = (entity, ctx, deltaTime) => {
+export const defaultDrawer: IDrawer = (entity, brush, deltaTime) => {
   // styledView(entity, brush, deltaTime); // todo:
   // translatedView(entity, brush, deltaTime); // todo:
-  childrenDrawer(entity, ctx, deltaTime);
+  childrenDrawer(entity, brush, deltaTime);
 };

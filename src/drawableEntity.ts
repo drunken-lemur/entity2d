@@ -1,4 +1,4 @@
-import { Ctx2D } from './brush';
+import { IBrush } from './brush';
 import { IDrawers } from './drawer';
 import { defaultDrawer } from './drawers';
 import { IDrawableEntity } from './drawable';
@@ -8,7 +8,7 @@ export abstract class DrawableEntity extends UpdatableEntity implements IDrawabl
   drawers: IDrawers = [defaultDrawer];
   private _isVisible = true;
 
-  draw(ctx: Ctx2D, deltaTime: number): void {
+  draw(ctx: IBrush, deltaTime: number): void {
     if (this._isVisible) {
       ctx.save();
 

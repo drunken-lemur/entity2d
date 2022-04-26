@@ -5,13 +5,13 @@ import { ForEachCallback, IComposite } from './composite';
 export interface IBaseEntity extends IBounds, IComposite<IBaseEntity> {
 }
 
-export abstract class BaseEntity extends Bounds implements IBaseEntity {
+export abstract class BaseEntity<P extends IBaseEntity = IBaseEntity> extends Bounds implements IBaseEntity {
   protected readonly children: Set<IBaseEntity> = new Set();
 
   private _parent?: IBaseEntity;
 
-  get parent() {
-    return this._parent;
+  get parent(){
+    return this._parent as P;
   }
 
   get length() {
