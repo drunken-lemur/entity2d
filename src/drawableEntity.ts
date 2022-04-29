@@ -8,21 +8,21 @@ export abstract class DrawableEntity extends UpdatableEntity implements IDrawabl
   drawers: IDrawers = [defaultDrawer];
   private _isVisible = true;
 
-  draw(ctx: IBrush, deltaTime: number): void {
+  draw(brush: IBrush, deltaTime: number): void {
     if (this._isVisible) {
-      ctx.save();
+      brush.save();
 
-      // ctx.setStyle(this.style); // todo: ? move to BaseView or StyledView
+      // brush.setStyle(this.style); // todo: ? move to BaseView or StyledView
       this.drawers.forEach(drawer => {
         if (typeof drawer === 'function') {
-          drawer(this, ctx, deltaTime);
+          drawer(this, brush, deltaTime);
         } else {
-          // ctx.setStyle(drawer.style); // todo:
-          drawer.draw(ctx, deltaTime);
+          // brush.setStyle(drawer.style); // todo:
+          drawer.draw(brush, deltaTime);
         }
       });
 
-      ctx.restore();
+      brush.restore();
     }
   }
 

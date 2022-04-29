@@ -1,5 +1,4 @@
 export * from './baseEntity';
-export * from './brush';
 export * from './composite';
 export * from './drawable';
 export * from './drawableEntity';
