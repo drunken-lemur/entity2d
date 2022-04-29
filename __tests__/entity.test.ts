@@ -1,10 +1,13 @@
-import { IBrush, Entity } from '../src';
-
-const noop = () => void 0;
+import { Entity } from '../src';
+import { IBrush } from 'brush2d';
 
 const ctxDumb = {
-  save: noop,
-  restore: noop,
+  save() {
+    return this;
+  },
+  restore() {
+    return this;
+  },
 } as IBrush;
 
 describe('Entity', () => {
@@ -47,10 +50,12 @@ describe('Entity', () => {
     let isADrawn = false;
     let isBDrawn = false;
 
-    entity.addDrawers(
-      () => isADrawn = true,
-      () => isBDrawn = true,
-    ).draw(ctxDumb, 0);
+    entity
+      .addDrawers(
+        () => (isADrawn = true),
+        () => (isBDrawn = true)
+      )
+      .draw(ctxDumb, 0);
 
     expect(isADrawn).toBeTruthy();
     expect(isBDrawn).toBeTruthy();
@@ -61,10 +66,13 @@ describe('Entity', () => {
     let isADrawn = false;
     let isBDrawn = false;
 
-    entity.addDrawers(
-      () => isADrawn = true,
-      () => isBDrawn = true,
-    ).clearDrawers().draw(ctxDumb, 0);
+    entity
+      .addDrawers(
+        () => (isADrawn = true),
+        () => (isBDrawn = true)
+      )
+      .clearDrawers()
+      .draw(ctxDumb, 0);
 
     expect(isADrawn).toBeFalsy();
     expect(isBDrawn).toBeFalsy();
@@ -74,13 +82,10 @@ describe('Entity', () => {
     const entity = new Entity();
     let isADrawn = false;
     let isBDrawn = false;
-    const aDrawer = () => isADrawn = true;
-    const bDrawer = () => isBDrawn = true;
+    const aDrawer = () => (isADrawn = true);
+    const bDrawer = () => (isBDrawn = true);
 
-    entity
-      .addDrawers(aDrawer, bDrawer)
-      .removeDrawers(bDrawer)
-      .draw(ctxDumb, 0);
+    entity.addDrawers(aDrawer, bDrawer).removeDrawers(bDrawer).draw(ctxDumb, 0);
 
     expect(isADrawn).toBeTruthy();
     expect(isBDrawn).toBeFalsy();
@@ -92,8 +97,8 @@ describe('Entity', () => {
     let isBDrawn = false;
 
     entity
-      .addDrawers(() => isADrawn = true)
-      .setDrawers(() => isBDrawn = true)
+      .addDrawers(() => (isADrawn = true))
+      .setDrawers(() => (isBDrawn = true))
       .draw(ctxDumb, 0);
 
     expect(isADrawn).toBeFalsy();
@@ -105,7 +110,7 @@ describe('Entity', () => {
     let isUpdated = false;
 
     expect(isUpdated).toBeFalsy();
-    entity.addUpdaters(() => isUpdated = true).update(0);
+    entity.addUpdaters(() => (isUpdated = true)).update(0);
     expect(isUpdated).toBeTruthy();
   });
 
@@ -149,10 +154,12 @@ describe('Entity', () => {
     let isAUpdated = false;
     let isBUpdated = false;
 
-    entity.addUpdaters(
-      () => isAUpdated = true,
-      () => isBUpdated = true,
-    ).update(0);
+    entity
+      .addUpdaters(
+        () => (isAUpdated = true),
+        () => (isBUpdated = true)
+      )
+      .update(0);
 
     expect(isAUpdated).toBeTruthy();
     expect(isBUpdated).toBeTruthy();
@@ -163,10 +170,13 @@ describe('Entity', () => {
     let isAUpdated = false;
     let isBUpdated = false;
 
-    entity.addUpdaters(
-      () => isAUpdated = true,
-      () => isBUpdated = true,
-    ).clearUpdaters().update(0);
+    entity
+      .addUpdaters(
+        () => (isAUpdated = true),
+        () => (isBUpdated = true)
+      )
+      .clearUpdaters()
+      .update(0);
 
     expect(isAUpdated).toBeFalsy();
     expect(isBUpdated).toBeFalsy();
@@ -176,13 +186,10 @@ describe('Entity', () => {
     const entity = new Entity();
     let isAUpdated = false;
     let isBUpdated = false;
-    const aUpdater = () => isAUpdated = true;
-    const bUpdater = () => isBUpdated = true;
+    const aUpdater = () => (isAUpdated = true);
+    const bUpdater = () => (isBUpdated = true);
 
-    entity
-      .addUpdaters(aUpdater, bUpdater)
-      .removeUpdaters(bUpdater)
-      .update(0);
+    entity.addUpdaters(aUpdater, bUpdater).removeUpdaters(bUpdater).update(0);
 
     expect(isAUpdated).toBeTruthy();
     expect(isBUpdated).toBeFalsy();
@@ -194,8 +201,8 @@ describe('Entity', () => {
     let isBUpdated = false;
 
     entity
-      .addUpdaters(() => isAUpdated = true)
-      .setUpdaters(() => isBUpdated = true)
+      .addUpdaters(() => (isAUpdated = true))
+      .setUpdaters(() => (isBUpdated = true))
       .update(0);
 
     expect(isAUpdated).toBeFalsy();
@@ -293,8 +300,8 @@ describe('Entity', () => {
 
     let isBUpdated = false;
     let isCUpdated = false;
-    bEntity.addUpdaters(() => isBUpdated = true);
-    cEntity.addUpdaters(() => isCUpdated = true);
+    bEntity.addUpdaters(() => (isBUpdated = true));
+    cEntity.addUpdaters(() => (isCUpdated = true));
 
     aEntity.add(bEntity, cEntity).forEach(entity => entity.update(0));
 

@@ -1,11 +1,11 @@
 import { IDrawerFunction } from './drawer';
 import { DrawableEntity } from './drawableEntity';
 
-export const childrenDrawer: IDrawerFunction = (entity, ctx, deltaTime) => {
+export const childrenDrawer: IDrawerFunction = (entity, brush, deltaTime) => {
   entity.forEach<DrawableEntity>(children => {
-    ctx.save();
-    children.draw(ctx, deltaTime);
-    ctx.restore();
+    brush.save();
+    children.draw(brush, deltaTime);
+    brush.restore();
   });
 };
 
